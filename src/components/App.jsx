@@ -8,7 +8,7 @@ import {
 import Container from '@mui/material/Container';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import { Loader } from './Loader/Loader';
-import { logoutUserThunk, refreshUserThunk } from 'redux/authen/operations';
+import { refreshUserThunk } from 'redux/authen/operations';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import css from '../components/App.module.css'
 import { UserMenu } from './UserMenu/UserMenu';
@@ -30,9 +30,6 @@ const App = () => {
     dispatch(refreshUserThunk());
   }, [token, dispatch,authentificated]);
 
-  const handleLogOut = () => {
-    dispatch(logoutUserThunk());
-  };
 
 
   return (

@@ -9,7 +9,6 @@ import {
 } from 'redux/contacts/selectorContacts';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
 const ContactForm = () => {
   const contacts = useSelector(selectUserContacts);
   const dispatch = useDispatch();
@@ -58,7 +57,7 @@ const ContactForm = () => {
               name="contactNumber"
               fullWidth
               autoFocus
-              onChange={event => setContactName(event.target.value)} value={contactNumber}
+              onChange={event => setContactNumber(event.target.value)} value={contactNumber}
             />
         {/* <input onChange={event => setContactNumber(event.target.value)} value={contactNumber} name="contactNumber" type="text" required /> */}
       </label>

@@ -3,11 +3,9 @@ import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom';
 import { selectAuthentificated } from 'redux/authen/selectors'
 
- const PrivateRoute = ({children, redirectTo ='/'}) => {
+const PrivateRoute = ({children, redirectTo ='/'}) => {
     const authentificated = useSelector(selectAuthentificated);
-    return authentificated ? children : <Navigate to={redirectTo}/>
-  return (
-    <div>PrivateRoute</div>
-  )
+    return (authentificated ? children : <Navigate to={redirectTo}/>)
+
 }
 export default PrivateRoute;

@@ -47,8 +47,7 @@ export const refreshUserThunk = createAsyncThunk(
     const token = state.auth.token
   try {
     setToken(token)
-    const {data} = await $instance.get('/users/current')
-    console.log(data);
+    await $instance.get('/users/current')
 
   } catch (error) {
     return thunkApi.rejectWithValue(error.message)
@@ -59,7 +58,7 @@ export const logoutUserThunk = createAsyncThunk(
   "auth/logout", 
   async (_, thunkApi) => {
   try {
-    const {data} = await $instance.post('/users/logout')
+    await $instance.post('/users/logout')
     clearToken();
 
   } catch (error) {

@@ -1,4 +1,4 @@
-import Container from '@mui/material/Container';
+
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import css from '../ContactsList/contactList.module.css';
@@ -6,11 +6,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteContactThunk } from 'redux/contacts/contactsOperations';
 import { selectUserContacts } from 'redux/contacts/selectorContacts';
 import { selectFilter } from 'redux/filter/filterSlice';
+import { Loader } from 'components/Loader/Loader';
+import { selectUserLoading } from 'redux/authen/selectors';
 
 const ContactList = () => {
   const dispatch = useDispatch();
   const filter = useSelector(selectFilter);
   const contacts = useSelector(selectUserContacts);
+  const isLoading = useSelector(selectUserLoading)
 
   const filterContacts = () => {
     if (!contacts) return [];
@@ -41,6 +44,7 @@ const ContactList = () => {
             </li>
           );
         })}
+        {isLoading && <Loader/>}
       </ul>
     
   );
