@@ -31,7 +31,6 @@ export const loginUserThunk = createAsyncThunk(
   async (userData, thunkApi)=>{
   try {
     const {data} = await $instance.post('/users/login', userData)
-    
     setToken(data.token)
     return data;
 
@@ -47,7 +46,8 @@ export const refreshUserThunk = createAsyncThunk(
     const token = state.auth.token
   try {
     setToken(token)
-    await $instance.get('/users/current')
+    const {data} = await $instance.get('/users/current')
+    return data;
 
   } catch (error) {
     return thunkApi.rejectWithValue(error.message)

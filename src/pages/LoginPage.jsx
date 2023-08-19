@@ -61,7 +61,6 @@ return (
               id="password"
               autoComplete="current-password"
             />
-        {/* <input name='userPassword' type="password" required minLength={7}/> */}
     </label>
     <br/>
     <Button

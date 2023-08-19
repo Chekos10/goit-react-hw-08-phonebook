@@ -48,7 +48,7 @@ const authSlice = createSlice({
       state.error = action.payload; 
     })
     //refresh//
-    .addCase(refreshUserThunk.pending, state =>{
+    .addCase(refreshUserThunk.pending, (state) =>{
       state.isLoading = true;
       state.error = null; 
     })

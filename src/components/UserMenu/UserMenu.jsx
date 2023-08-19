@@ -13,7 +13,7 @@ export const UserMenu = () => {
     }
 
 return (
-    <div>
+    <div className={css.userInfo}>
     <button className={css.logoutBtn}  onClick={handleLogOut}>Log Out</button>
     {userData && <p className={css.emailShow}> {userData.email} </p>}
     </div> 

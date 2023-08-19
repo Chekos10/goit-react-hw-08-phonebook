@@ -6,17 +6,17 @@ import {
   selectToken,
 } from 'redux/authen/selectors';
 import Container from '@mui/material/Container';
-import { NavLink, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { Loader } from './Loader/Loader';
 import { refreshUserThunk } from 'redux/authen/operations';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
-import css from '../components/App.module.css'
-import { UserMenu } from './UserMenu/UserMenu';
+import Navigation from './Navigation/Navigation';
 
 const HomePage = lazy(() => import('pages/HomePage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const ContactsPage = lazy(() => import('pages/ContactsPage'));
+
 
 const App = () => {
   const dispatch = useDispatch();
@@ -26,30 +26,16 @@ const App = () => {
 
   useEffect(() => {
     if (!token || authentificated) return;
-
+    
     dispatch(refreshUserThunk());
-  }, [token, dispatch,authentificated]);
+  }, [token, dispatch, authentificated]);
 
 
 
   return (
     <div>
      <Container component="main" maxWidth="xs">
-      <header>
-        <nav className={css.navBar}>
-          <NavLink className={css.homeLink} to="/">Home</NavLink>
-          {authentificated ? (
-            <>
-              <NavLink className={css.contactsLink} to="/contacts">Contacts</NavLink>
-              <UserMenu/>
-            </>
-          ) : (
-            <>
-              <NavLink className={css.loginLink} to="/login">Login</NavLink>
-              <NavLink className={css.registerLink} to="/register">Register</NavLink>
-            </>
-          )}
-        </nav>
+      <Navigation/>
         <main>
           <Suspense fallback={<Loader />}>
             <Routes>
@@ -61,10 +47,10 @@ const App = () => {
               } />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
+              <Route path="*" element={<Navigate to="/"/>}/>
             </Routes>
           </Suspense>
         </main>
-      </header>
       </Container>
     </div>
   );
